@@ -1,0 +1,15 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kranky&display=swap');
+
+body {
+   font-family: "Kranky", serif;
+  font-weight: 400;
+  font-style: normal;  
+  background-color: #753a12;
+}
+
+:root {
+  --c-brown: #570404;
+  --ff-title: "Pinyon Script", cursive;
+}
