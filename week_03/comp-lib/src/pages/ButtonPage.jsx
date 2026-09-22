@@ -31,6 +31,14 @@ const ButtonPage = () => {
       <div className='mb-3'>
       <Button primary outline rounded>primary outline rounded</Button>
       </div>
+
+      <div className="mb-2">
+      <Button primary small> Small Button </Button>
+      </div>
+
+      <div className="mb-2">
+      <Button success large>Large Button</Button>
+      </div>
       
     </>
   )

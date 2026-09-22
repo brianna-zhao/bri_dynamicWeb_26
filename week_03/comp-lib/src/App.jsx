@@ -7,6 +7,7 @@ const App = () => {
   return (
     <div className="container mx-auto mt-4">
       <hr className="my-8" />
+      <ButtonPage/>
       <AccordionPage />
     </div>
   )
