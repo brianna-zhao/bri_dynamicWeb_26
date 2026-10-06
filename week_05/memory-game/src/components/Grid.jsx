@@ -14,6 +14,9 @@ const Grid = () => {
   const [cards, setCards] = useState([])
   const [choiceOne, setChoiceOne] = useState(null)
   const [choiceTwo, setChoiceTwo] = useState(null)
+  const [turns, setTurns] = useState(0)
+  const [disabled, setDisabled] = useState(false)
+  const [won, setWon] = useState(false)
 
 
   const shuffleCards = () =>{
@@ -24,6 +27,8 @@ const Grid = () => {
     .map((card)=>({...card, id: crypto.randomUUID()}))
 
     setCards(shuffled)
+    setTurns(0)
+    setWon(false)
   }
 
   const handleChoice = (card) =>{

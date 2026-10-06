@@ -31,8 +31,8 @@
   cursor: pointer;
 }
 
-/* the whole trick: turn the card half way round.
-   For now that happens on hover -- in class we move it onto a click. */
+/* the whole trick: turn the card half way round. The class is applied by
+   Card.jsx now, from a prop -- the CSS does not decide anything. */
 .flipped {
   transform: rotateY(180deg);
 }
