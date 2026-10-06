@@ -6,8 +6,6 @@ const SearchBar = (props) => {
 
     const handleChange = (event) =>{
         setTerm(event.target.value)
-
-
     }
 
     const handleFormSubmit =(event) =>{

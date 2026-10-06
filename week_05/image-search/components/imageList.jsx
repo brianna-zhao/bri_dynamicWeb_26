@@ -4,13 +4,12 @@ const imageList = (props) => {
     const {images} = props
     console.log(images)
 
-    const rendedImages = images.map((img)=>(
+    const renderedImages = images.map((img)=>(
         <ImageItem image={img} key={img.id}/>
     ))
   return (
     <div>
-        {
-        }
+        {renderedImages}
         </div>
   )
 }
