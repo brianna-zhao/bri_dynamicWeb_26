@@ -1,0 +1,12 @@
+{
+  "todos": [
+    {
+      "id": 2,
+      "title": "week 6 notes"
+    },
+    {
+      "title": "a todo made from VS Code",
+      "id": 3
+    }
+  ]
+}

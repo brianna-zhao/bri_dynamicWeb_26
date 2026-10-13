@@ -1,11 +1,20 @@
 import {useState} from 'react'
 import TodoCreate from './components/TodoCreate'
 import TodoList from './components/TodoList'
+import { fetchTodos } from '../api'
 
 function App() {
   const [todos, setTodos] = useState([])
+    useEffect (()=>{
+    const loadTodos = async()=>{
+      const todos = await fetchTodos()
+      setTodos(todos)
+    }  
+  loadTodos()
+},[])
 
-  const createTodo = (title) => {
+
+  const createTodo = async(title) => {
     // NEVER EVER EVER todos.push('something')
     // We always create a new copy of existing state using ...
     // then we add the new todo to the end with our setter
