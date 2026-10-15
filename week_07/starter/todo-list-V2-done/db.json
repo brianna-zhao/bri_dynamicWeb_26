@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "title": "week05 homework",
+      "done": false,
+      "id": 1
+    },
+    {
+      "title": "week06 notes",
+      "done": false,
+      "id": 2
+    },
+    {
+      "title": "week06 homework",
+      "done": false,
+      "id": 3
+    },
+    {
+      "title": "start midterm",
+      "done": false,
+      "id": 4
+    }
+  ]
+}
