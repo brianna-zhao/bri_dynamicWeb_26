@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import TodoEdit from './TodoEdit'
-import useTodosContext from './hooks/use-todos-context'
+import useTodosContext from '../hooks/use-todos-context'
 
 const TodoItem = (props) => {
    const {todo} = props

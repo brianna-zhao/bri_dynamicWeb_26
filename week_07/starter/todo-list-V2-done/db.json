@@ -1,24 +1,14 @@
 {
   "todos": [
     {
-      "title": "week05 homework",
-      "done": false,
-      "id": 1
+      "id": 2,
+      "title": "Read the week 07 notes",
+      "done": false
     },
     {
-      "title": "week06 notes",
-      "done": false,
-      "id": 2
-    },
-    {
-      "title": "week06 homework",
-      "done": false,
+      "title": "Make sure todo create works in class",
+      "done": true,
       "id": 3
-    },
-    {
-      "title": "start midterm",
-      "done": false,
-      "id": 4
     }
   ]
 }

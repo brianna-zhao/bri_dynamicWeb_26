@@ -13,7 +13,7 @@ const App = () => {
   // that would fetch, set state, re-render, fetch again, forever.
   useEffect(() => {
     fetchTodos()
-  }, [])
+  }, [fetchTodos])
 
 
   // derived from state, not stored -- always right, for free
@@ -22,7 +22,7 @@ const App = () => {
   return (
     <div className="max-w-xl mx-auto p-8">
       <h1 className="text-3xl font-bold mb-6">Todo List</h1>
-      <TodoCreate onCreate={createTodo} />
+      <TodoCreate />
 
       {isLoading && <p className="text-gray-500">Loading your todos...</p>}
 
@@ -31,12 +31,7 @@ const App = () => {
       {!isLoading && !error && todos.length === 0 ? (
         <p className="text-gray-500">Nothing yet. Add something above.</p>
       ) : (
-        <TodoList
-          todos={todos}
-          onDelete={deleteTodoById}
-          onEdit={editTodoById}
-          onToggle={toggleTodoById}
-        />
+        <TodoList/>
       )}
 
       <p className="mt-6 text-sm text-gray-500">

@@ -14,7 +14,7 @@ const TodosContext = createContext()
 
 //provider is an ordinary conponet. everything in app ->here now
 const Provider = (props) =>{
-    const children = props
+    const {children} = props
 
     const [todos, setTodos] = useState([])
     const [isLoading, setIsLoading] = useState(true)

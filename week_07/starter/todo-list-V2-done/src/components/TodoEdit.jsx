@@ -1,6 +1,4 @@
 import {useState} from 'react'
-import { useContext } from 'react'
-import TodosContext from '../context/todos'
 
 const TodoEdit = (props) => {
   const {todo, onSubmit} = props
