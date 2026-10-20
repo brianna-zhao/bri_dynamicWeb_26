@@ -4,10 +4,12 @@ const TodoList = (props) => {
     const {todos, onDelete, onEdit} = props
 
     const renderedTodos = todos.map((todo)=>{
-        <TodoItem key={todo.id} todo={todo} onDelete = {onDelete}/>
+      return (
+              <TodoItem key={todo.id} todo={todo} onDelete={onDelete} onEdit={onEdit} />
+      )
     })
   return (
-    <div>TodoList</div>
+    <div>{renderedTodos}</div>
   )
 }
 

@@ -20,6 +20,10 @@ const TodoItem = (props) => {
         setShowEdit(false)
     }
 
+     if (showEdit) {
+    return <TodoEdit todo={todo} onSubmit={handleSubmit} />
+  }
+
   return (
     <div className="flex items-center justify-between border-b border-gray-200 py-3">
       <span>{todo.title}</span>
