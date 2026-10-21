@@ -2,21 +2,22 @@ import cx from 'classnames'
 import styles from './Card.module.css'
 import CardPattern from '../assets/moroccan-flower-dark.png'
 
-// The card knows how one card LOOKS. It does not know the rules of the game,
-// and by the end of class it still will not.
 const Card = (props) => {
   const {card, handleChoice, flipped} = props
 
-  const handleClick = () =>{
+  const handleClick = () => {
+    // the Card does not decide whether it is flipped. It reports the click
+    // and lets the Grid decide -- the same trade as every component since
+    // the Accordion.
     handleChoice(card)
-
   }
 
   return (
     <div className={styles.card}>
-      <div 
-      onClick={handleClick}
-      className={cx(styles.inner, {[styles.flipped]: flipped})}>
+      <div
+        onClick={handleClick}
+        className={cx(styles.inner, {[styles.flipped]: flipped})}
+      >
         <div className={styles.front}>
           <img src={CardPattern} alt="" />
         </div>
