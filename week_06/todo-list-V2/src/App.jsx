@@ -1,3 +1,6 @@
+//so it only run once whenever the page reload instead of rerun with every signle update
+//it got delete immediatly and if server is not running when it is being deleted, when the page refresh/reload the deleted todo will reapper because data still in server
+//no because not changing any todoitem just chosing what to display
 import {useState, useEffect} from 'react'
 import TodoCreate from './components/TodoCreate'
 import TodoList from './components/TodoList'
@@ -9,6 +12,7 @@ const App = () => {
   const [todos, setTodos] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [filter, setFilter] = useState('all')
 
   // [] = run once, when the component first appears. NOT every render --
   // that would fetch, set state, re-render, fetch again, forever.
@@ -49,8 +53,6 @@ const App = () => {
     const updated = await updatedTodoRequest({...todo, title: newTitle})
 
 
-
-
     // map returns a new array the SAME length. Every todo comes back; the one
     // we are editing comes back as a new object with a new title.
     const updatedTodos = todos.map((todo) => {
@@ -61,6 +63,36 @@ const App = () => {
     })
     setTodos(updatedTodos)
   }
+
+  const checkTodoById = async (id) => {
+    const todo = todos.find((todo) => todo.id === id)
+
+    const updated = await updatedTodoRequest({
+      ...todo,
+      done: !todo.done,
+    })
+
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => {
+        if (todo.id === id) {
+          return updated
+        }
+        return todo
+      })
+    )
+  }
+
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === 'active') {
+      return !todo.done
+    }
+
+    if (filter === 'done') {
+      return todo.done
+    }
+
+    return true
+})
 
   return (
      <div className="max-w-xl mx-auto p-8">
@@ -75,8 +107,31 @@ const App = () => {
       {!isLoading && !error && todos.length === 0 ? (
         <p className="text-gray-500">Nothing yet. Add something above.</p>
       ) : (
-        <TodoList todos={todos} onDelete={deleteTodoById} onEdit={editTodoById} />
+        <TodoList todos={filteredTodos} onDelete={deleteTodoById} onEdit={editTodoById} onCheck = {checkTodoById} />
       )}
+
+      <div className="flex gap-3 my-4">
+          <button
+            onClick={() => setFilter('all')}
+            className="border rounded px-3 py-1"
+          >
+            All
+          </button>
+
+          <button
+            onClick={() => setFilter('active')}
+            className="border rounded px-3 py-1"
+          >
+            Active
+          </button>
+
+          <button
+            onClick={() => setFilter('done')}
+            className="border rounded px-3 py-1"
+          >
+            Done
+          </button>
+  </div>
 
       <p className="mt-6 text-sm text-gray-500">
         {todos.length} {todos.length === 1 ? 'thing' : 'things'} to do
