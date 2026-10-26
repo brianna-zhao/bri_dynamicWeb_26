@@ -8,6 +8,7 @@ const TodoEdit = (props) => {
   const [values, setValues] = useState({
     title: todo.title,
     startTime: todo.startTime || '',
+    commuteMinutes: todo.commuteMinutes ?? '',
 })
 
   // this updates the local state for the form input value
@@ -24,7 +25,7 @@ const TodoEdit = (props) => {
   // this passes the new title and todo.id all the back up to App which handles the editBy Id
   const handleSubmit = (event) => {
     event.preventDefault()
-    onSubmit(todo.id, values.title, values.startTime)
+    onSubmit(todo.id, values.title, values.startTime, Number(values.commuteMinutes))
   }
 
 
@@ -39,7 +40,7 @@ const TodoEdit = (props) => {
         required
       />
       <label className="block">
-      Start date and time
+        Start date and time
       <input
         type="datetime-local"
         name="startTime"
@@ -48,6 +49,19 @@ const TodoEdit = (props) => {
         className="mt-1 w-full border border-gray-300 rounded py-2 px-3"
         required
       />
+      <label className="block">
+        Commute from home (minutes)
+      <input
+        name="commuteMinutes"
+        type="number"
+        min="0"
+        step="1"
+        value={values.commuteMinutes}
+        onChange={handleChange}
+        className="mt-1 w-full border border-gray-300 rounded py-2 px-3"
+        required
+      />
+</label>
       <button
         type="submit"
         className="bg-blue-900 text-white px-5 py-2 rounded"

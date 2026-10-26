@@ -9,11 +9,12 @@ export const fetchTodos = async () => {
   return response.data
 }
 
-export const createTodo = async (title, startTime) => {
+export const createTodo = async (title, startTime, commuteMinutes) => {
   // we send the title. The server sends back the whole todo, WITH an id.
-  const response = await axios.post(`${BASE}/todos`, {title, startTime})
+  const response = await axios.post(`${BASE}/todos`, {title, startTime, commuteMinutes})
   return response.data
 }
+
 
 export const deleteTodo = async (id) => {
   await axios.delete(`${BASE}/todos/${id}`)

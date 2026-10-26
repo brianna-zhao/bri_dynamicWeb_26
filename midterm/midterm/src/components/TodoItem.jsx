@@ -16,8 +16,8 @@ const TodoItem = (props) => {
   }
 
   // this handle submit is for the edit form
-  const handleSubmit = (id, newTitle, newStartTime) => {
-    onEdit(id, newTitle, newStartTime)
+  const handleSubmit = (id, newTitle, newStartTime, newCommuteMinutes) => {
+    onEdit(id, newTitle, newStartTime, newCommuteMinutes)
     setShowEdit(false)
   }
 
@@ -42,6 +42,13 @@ const TodoItem = (props) => {
             })
           : 'Not set'}
 </p>
+      <p className="mt-1 text-sm text-gray-500">
+        Commute from home: {todo.commuteMinutes != null
+          ? `${todo.commuteMinutes} min`
+          : 'Not set'}
+      </p>
+
+     
 </div>
       <div className="text-sm">
         <button onClick={handleEditClick} className="text-blue-700">

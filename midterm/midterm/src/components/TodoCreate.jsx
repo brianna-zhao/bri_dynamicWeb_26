@@ -27,7 +27,7 @@ const TodoCreate = (props) => {
     event.preventDefault()
     // pass local title state up to app parent via onCreate prop
     //onCreate(title)
-    onCreate(values.title, values.startTime)
+    onCreate(values.title, values.startTime, Number(values.commuteMinutes))
     // clearing out the form after the user submits
     //setTitle('')
 
@@ -53,6 +53,22 @@ const TodoCreate = (props) => {
       name="startTime"
       type="datetime-local"
       value={values.startTime}
+      onChange={handleChange}
+      className="w-full border border-gray-300 p-3 rounded mt-1"
+      required
+    />
+
+    <label htmlFor="commuteMinutes" className="block mt-3">
+      Commute from home (minutes)
+    </label>
+
+    <input
+      id="commuteMinutes"
+      name="commuteMinutes"
+      type="number"
+      min="0"
+      step="1"
+      value={values.commuteMinutes}
       onChange={handleChange}
       className="w-full border border-gray-300 p-3 rounded mt-1"
       required
