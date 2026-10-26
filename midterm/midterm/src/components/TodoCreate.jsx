@@ -36,6 +36,7 @@ const TodoCreate = (props) => {
   return (
   <form onSubmit={handleSubmit}>
     <input
+      required
       type="text"
       name="title"
       value={values.title}
@@ -49,6 +50,7 @@ const TodoCreate = (props) => {
     </label>
 
     <input
+      required
       id="startTime"
       name="startTime"
       type="datetime-local"
