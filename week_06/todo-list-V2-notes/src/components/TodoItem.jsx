@@ -2,7 +2,7 @@ import {useState} from 'react'
 import TodoEdit from './TodoEdit'
 
 const TodoItem = (props) => {
-  const {todo, onDelete, onEdit, onCheck} = props
+  const {todo, onDelete, onEdit} = props
 
   const [showEdit, setShowEdit] = useState(false)
 
@@ -27,18 +27,7 @@ const TodoItem = (props) => {
 
   return (
     <div className="flex items-center justify-between border-b border-gray-200 py-3">
-      <div className="flex items-center gap-3">
-      <input
-        type="checkbox"
-        checked={!!todo.done}
-        onChange={() => onCheck(todo.id)}
-        aria-label={todo.title}
-        className="h-4 w-4  accent-green-600"
-      />
-      <span className={todo.done ? 'line-through text-gray-400' : ''}>
-        {todo.title}
-      </span>
-      </div>
+      <span>{todo.title}</span>
       <div className="text-sm">
         <button onClick={handleEditClick} className="text-blue-700">
           edit
