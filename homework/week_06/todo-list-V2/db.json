@@ -3,12 +3,12 @@
     {
       "id": 2,
       "title": "week 6 notes",
-      "done": false
+      "done": true
     },
     {
       "title": "a todo made from VS Code",
       "id": 4,
-      "done": false
+      "done": true
     },
     {
       "title": "a todo made from VS Code",
