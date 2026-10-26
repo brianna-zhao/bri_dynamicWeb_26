@@ -28,9 +28,9 @@ const App = () => {
     loadTodos()
   }, [])
 
-  const createTodo = async (title) => {
+  const createTodo = async (title, startTime) => {
     // the server makes the id now, so we no longer invent one
-    const newTodo = await createTodoRequest(title)
+    const newTodo = await createTodoRequest(title, startTime)
     const updatedTodos = [...todos, newTodo]
     setTodos(updatedTodos)
   }

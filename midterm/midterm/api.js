@@ -11,7 +11,7 @@ export const fetchTodos = async () => {
 
 export const createTodo = async (title) => {
   // we send the title. The server sends back the whole todo, WITH an id.
-  const response = await axios.post(`${BASE}/todos`, {title})
+  const response = await axios.post(`${BASE}/todos`, {title, startTime})
   return response.data
 }
 
