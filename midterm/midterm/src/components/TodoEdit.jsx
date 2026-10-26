@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import { useState, useEffect } from 'react'
+
 
 const TodoEdit = (props) => {
   const {todo, onSubmit} = props
