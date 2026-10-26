@@ -5,6 +5,7 @@ const TodoCreate = (props) => {
   const [values, setValues] = useState({
   title: '',
   startTime: '',
+  commuteMinutes: '',
 })
   const {onCreate} = props
 

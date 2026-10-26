@@ -16,8 +16,8 @@ const TodoItem = (props) => {
   }
 
   // this handle submit is for the edit form
-  const handleSubmit = (id, newTitle) => {
-    onEdit(id, newTitle)
+  const handleSubmit = (id, newTitle, newStartTime) => {
+    onEdit(id, newTitle, newStartTime)
     setShowEdit(false)
   }
 
@@ -27,7 +27,22 @@ const TodoItem = (props) => {
 
   return (
     <div className="flex items-center justify-between border-b border-gray-200 py-3">
-      <span>{todo.title}</span>
+      <div>
+        <span>{todo.title}</span>
+
+        <p className="mt-1 text-sm text-gray-500">
+         Due: {todo.startTime
+          ? new Date(todo.startTime).toLocaleString('en-US', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: '2-digit',
+            })
+          : 'Not set'}
+</p>
+</div>
       <div className="text-sm">
         <button onClick={handleEditClick} className="text-blue-700">
           edit

@@ -9,7 +9,7 @@ export const fetchTodos = async () => {
   return response.data
 }
 
-export const createTodo = async (title) => {
+export const createTodo = async (title, startTime) => {
   // we send the title. The server sends back the whole todo, WITH an id.
   const response = await axios.post(`${BASE}/todos`, {title, startTime})
   return response.data

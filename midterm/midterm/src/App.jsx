@@ -44,12 +44,9 @@ const App = () => {
     setTodos(updatedTodos)
   }
 
-  const editTodoById = async (id, newTitle) => {
+  const editTodoById = async (id, newTitle, newStartTime) => {
     const todo = todos.find((todo)=> todo.id === id)
-    const updated = await updatedTodoRequest({...todo, title: newTitle})
-
-
-
+    const updated = await updatedTodoRequest({...todo, title: newTitle, startTime: newStartTime,})
 
     // map returns a new array the SAME length. Every todo comes back; the one
     // we are editing comes back as a new object with a new title.
