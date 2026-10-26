@@ -1,32 +1,24 @@
 import {useState} from 'react'
 import TodoEdit from './TodoEdit'
-import useTodosContext from '../hooks/use-todos-context'
 
 const TodoItem = (props) => {
-   const {todo} = props
-  const {deleteTodoById, editTodoById, toggleTodoById} = useTodosContext()
+  const {todo, onDelete, onEdit} = props
 
-  // THIS one belongs here. Whether this row is showing its edit form is
-  // nobody else's business -- App does not care, the other rows do not care.
   const [showEdit, setShowEdit] = useState(false)
 
   const handleDelete = () => {
-    deleteTodoById(todo.id)
+    onDelete(todo.id)
   }
 
+  // this does not edit anything, it just shows the form
   const handleEditClick = () => {
     setShowEdit(!showEdit)
   }
 
+  // this handle submit is for the edit form
   const handleSubmit = (id, newTitle) => {
-    editTodoById(id, newTitle)
-    // close the form once the edit has gone up
+    onEdit(id, newTitle)
     setShowEdit(false)
-  }
-
-  const handleToggle = () => {
-    // send the OPPOSITE of what it is now
-    toggleTodoById(todo.id, !todo.done)
   }
 
   if (showEdit) {
@@ -35,19 +27,8 @@ const TodoItem = (props) => {
 
   return (
     <div className="flex items-center justify-between border-b border-gray-200 py-3">
-      <label className="flex items-center gap-3">
-        <input
-          type="checkbox"
-          checked={todo.done || false}
-          onChange={handleToggle}
-          className="h-4 w-4"
-        />
-        <span className={todo.done ? 'line-through text-gray-400' : ''}>
-          {todo.title}
-        </span>
-      </label>
-
-      <div className="flex gap-3 text-sm">
+      <span>{todo.title}</span>
+      <div className="text-sm">
         <button onClick={handleEditClick} className="text-blue-700">
           edit
         </button>

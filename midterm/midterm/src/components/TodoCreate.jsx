@@ -1,10 +1,8 @@
 import {useState} from 'react'
-import useTodosContext from '../hooks/use-todos-context'
 
-const TodoCreate = () => {
-  const {createTodo} = useTodosContext()
-  // the input's text lives here -- this component owns it, because nobody
-  // else needs to know what you are halfway through typing
+const TodoCreate = (props) => {
+  const {onCreate} = props
+
   const [title, setTitle] = useState('')
 
   const handleChange = (event) => {
@@ -12,22 +10,26 @@ const TodoCreate = () => {
   }
 
   const handleSubmit = (event) => {
+    // dont allow the form field to refresh the page
     event.preventDefault()
+    // pass local title state up to app parent via onCreate prop
     onCreate(title)
-    // clear the box. This is only possible BECAUSE the input is controlled.
+    // clearing out the form after the user submits
     setTitle('')
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 mb-6">
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         value={title}
         onChange={handleChange}
-        placeholder="What needs doing?"
-        className="flex-1 border border-gray-300 rounded px-3 py-2"
+        placeholder="What needs to be done?"
+        className="flex-1 border border-gray-300 py-3 rounded"
       />
-      <button className="bg-blue-900 text-white px-5 py-2 rounded">Add</button>
+      <button className="bg-blue-900 text-white px-5 py-2 rounded">
+        Add Todo
+      </button>
     </form>
   )
 }
