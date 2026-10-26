@@ -2,7 +2,7 @@ My app is a location-based todo list is a todo list that calculates when I need 
 
 As a person with ADHD and is always late, I want to create a color coded list that visually tell user how urgent it is to start moving. So it remind me that i need to leave and reduce the chance of me being late. 
 
- Your developer checklist. 
+developer checklist. 
 - startTime and commuteMinutes for each task.
 - inputs for the task’s start date and time and  commute time.
 - store the input values in the create form’s state.
