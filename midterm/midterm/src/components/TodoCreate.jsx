@@ -76,7 +76,7 @@ const TodoCreate = (props) => {
       required
     />
 
-    <button className="bg-blue-900 text-white px-5 py-2 rounded mt-3">
+    <button className="rounded-lg bg-blue-100 px-4 py-2 font-medium text-blue-800 hover:bg-blue-200 mt-5">
       Add Todo
     </button>
   </form>

@@ -9,6 +9,16 @@ const App = () => {
   const [todos, setTodos] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [filter, setFilter] = useState('all')
+  const [now, setNow] = useState(Date.now())  
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setNow(Date.now())
+    }, 60000)
+
+    return () => clearInterval(timer)
+  }, [])
 
   // [] = run once, when the component first appears. NOT every render --
   // that would fetch, set state, re-render, fetch again, forever.
@@ -41,7 +51,31 @@ const App = () => {
       })
       setTodos(updatedTodos)
     }
+
+    
 */
+
+const filteredTodos = todos.filter((todo) => {
+  const past = todo.startTime
+    ? new Date(todo.startTime).getTime() <= now
+    : false
+
+  if (filter === 'active') {
+    return !todo.done && !past
+  }
+
+  if (filter === 'past') {
+    return !todo.done && past
+  }
+
+  if (filter === 'done') {
+    return !!todo.done
+  }
+
+  return true
+})
+
+
   const toggleTodoById = async (id, done) => {
   try {
     const todo = todos.find((todo) => todo.id === id)
@@ -99,19 +133,90 @@ const App = () => {
 
   return (
      <div className="max-w-xl mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-6">Todo List</h1>
+      <h1 className="text-3xl font-bold mb-6">Time to Leave</h1>
       <TodoCreate onCreate={createTodo} />
       {isLoading && <p className="text-gray-500">Loading your todos...</p>}
+        <div className="my-6 flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={() => {
+              setFilter('all')
+              setNow(Date.now())
+            }}
+            aria-pressed={filter === 'all'}
+            className={`rounded-full px-4 py-2 text-sm ${
+              filter === 'all'
+                ? 'bg-blue-200 text-blue-900'
+                : 'bg-blue-50 text-blue-700 hover:bg-blue-100'
+            }`}
+          >
+      All
+    </button>
+
+        <button
+          type="button"
+          onClick={() => {
+            setFilter('active')
+            setNow(Date.now())
+          }}
+          aria-pressed={filter === 'active'}
+          className={`rounded-full px-4 py-2 text-sm ${
+            filter === 'active'
+              ? 'bg-blue-200 text-blue-900'
+              : 'bg-blue-50 text-blue-700 hover:bg-blue-100'
+          }`}
+        >
+          Active
+    </button>
+
+    <button
+      type="button"
+      onClick={() => {
+        setFilter('past')
+        setNow(Date.now())
+      }}
+      aria-pressed={filter === 'past'}
+      className={`rounded-full px-4 py-2 text-sm ${
+        filter === 'past'
+          ? 'bg-blue-200 text-blue-900'
+          : 'bg-blue-50 text-blue-700 hover:bg-blue-100'
+      }`}
+    >
+      Past
+    </button>
+
+    <button
+      type="button"
+      onClick={() => {
+        setFilter('done')
+        setNow(Date.now())
+      }}
+      aria-pressed={filter === 'done'}
+      className={`rounded-full px-4 py-2 text-sm ${
+        filter === 'done'
+         ? 'bg-blue-200 text-blue-900'
+        : 'bg-blue-50 text-blue-700 hover:bg-blue-100'
+      }`}
+    >
+      Done
+    </button>
+  </div>
 
       {error && (
         <p className="rounded bg-red-50 p-3 text-red-700">{error}</p>
       )}
 
-      {!isLoading && !error && todos.length === 0 ? (
-        <p className="text-gray-500">Nothing yet. Add something above.</p>
-      ) : (
-        <TodoList todos={todos} onDelete={deleteTodoById} onEdit={editTodoById} onToggle={toggleTodoById}/>
-      )}
+      {!isLoading && !error && (
+      filteredTodos.length === 0 ? (<p className="text-gray-500">
+        {todos.length === 0
+          ? 'Nothing yet. Add your first event above.'
+          : 'No events match this filter.'}
+      </p>
+  ) : (
+    <TodoList todos={filteredTodos} onDelete={deleteTodoById} onEdit={editTodoById} onToggle={toggleTodoById}
+    />
+  )
+)}
 
       <p className="mt-6 text-sm text-gray-500">
         {todos.length} {todos.length === 1 ? 'thing' : 'things'} to do

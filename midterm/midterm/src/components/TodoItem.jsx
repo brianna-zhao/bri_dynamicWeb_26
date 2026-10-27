@@ -50,24 +50,29 @@ const TodoItem = (props) => {
     )
   }
 
-  let countdownColor = 'text-gray-500'
+ let bgColor = 'bg-gray-400'
 
-  if (minutesLeft !== null) {
-    if (minutesLeft > 30) {
-      countdownColor = 'text-green-700'
-    } else if (minutesLeft > 10) {
-      countdownColor = 'text-orange-600'
-    } else {
-      countdownColor = 'text-red-600'
-    }
+if (todo.done) {
+  bgColor = 'bg-gray-400'
+} else if (minutesLeft !== null) {
+  if (minutesLeft > 180) {
+    bgColor = 'bg-blue-500'
+  } else if (minutesLeft > 30) {
+    bgColor = 'bg-green-500'
+  } else if (minutesLeft > 10) {
+    bgColor = 'bg-red-500'
+  } else {
+    bgColor = 'bg-red-200'
+  }
 }
+
 
   if (showEdit) {
     return <TodoEdit todo={todo} onSubmit={handleSubmit} />
   }
 
   return (
-    <div className="flex items-center justify-between border-b border-gray-200 py-3">
+    <div className={`mb-4 flex flex-col gap-4 rounded-2xl p-5 sm:flex-row sm:items-center sm:justify-between ${bgColor}`}>
       <div>
         <label className="flex items-center gap-3">
           <input
@@ -77,12 +82,11 @@ const TodoItem = (props) => {
             className="h-4 w-4"
           />
 
-          <span className={todo.done ? 'text-gray-400' : ''}>
-            {todo.title}
-          </span>
+          <span className="font-bold text-black"> {todo.title}
+</span>
         </label>
 
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-gray-900">
          Due: {todo.startTime
           ? new Date(todo.startTime).toLocaleString('en-US', {
               weekday: 'long',
@@ -94,13 +98,13 @@ const TodoItem = (props) => {
             })
           : 'Not set'}
 </p>
-      <p className="mt-1 text-sm text-gray-500">
+      <p className="mt-1 text-sm text-gray-900">
         Commute from home: {todo.commuteMinutes != null
           ? `${todo.commuteMinutes} min`
           : 'Not set'}
       </p>
 
-     <p className="mt-1 text-sm text-blue-700">
+     <p className={`mt-2 text-sm font-medium ${departureTime || todo.done ? 'text-white' : 'text-gray-600'}`}>
       Leave home by: {departureTime
         ? departureTime.toLocaleString('en-US', {
             weekday: 'short',
@@ -112,7 +116,7 @@ const TodoItem = (props) => {
         : 'Not set'}
       </p>
 
-      {minutesLeft !== null && ( <p className={`mt-1 text-sm font-semibold ${countdownColor}`}>
+      {minutesLeft !== null && ( <p className="mt-1 text-sm font-semibold text-white">
     {minutesLeft > 0
       ? `Leave in ${minutesLeft} min`
       : 'Time to leave or departure time has passed'}
@@ -120,15 +124,17 @@ const TodoItem = (props) => {
 )}
 </div>
       <div className="text-sm">
-        <button onClick={handleEditClick} className="text-blue-700">
-          edit
+        <div className="flex shrink-0 gap-2 text-sm">
+        <button onClick={handleEditClick} className="rounded-lg bg-white px-3 py-2 font-medium text-gray-800 hover:bg-gray-100">
+          Edit
         </button>
-        <button onClick={handleDelete} className="text-red-600">
-          delete
+
+        <button onClick={handleDelete} className="rounded-lg bg-white px-3 py-2 font-medium text-red-600 hover:bg-red-50">
+          Delete
         </button>
+</div>
       </div>
     </div>
   )
 }
-
 export default TodoItem
