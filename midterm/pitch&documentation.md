@@ -12,3 +12,5 @@ developer checklist.
 - use colors based on how much time remains before departure. green yellow red
 - update the current time so colors change automatically.(will try my best to do this, if not successful i will probably display different leave time in different colo blocks under each task)
 - edit the start time and commute.
+
+https://docs.google.com/presentation/d/1LhkF_7eENOKudzidxbvbbqXokskfTzNHIHN3RqLOXZo/edit?usp=sharing
