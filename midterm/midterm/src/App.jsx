@@ -28,6 +28,43 @@ const App = () => {
     loadTodos()
   }, [])
 
+  /*
+  const toggleTodoById = async (id, done) => {
+      // same shape as every other one: ask the server, then map the answer in
+      const updated = await toggleTodoRequest(id, done)
+  
+      const updatedTodos = todos.map((todo) => {
+        if (todo.id === id) {
+          return updated
+        }
+        return todo
+      })
+      setTodos(updatedTodos)
+    }
+*/
+  const toggleTodoById = async (id, done) => {
+  try {
+    const todo = todos.find((todo) => todo.id === id)
+    const updated = await updatedTodoRequest({
+      ...todo,
+      done: done,
+    })
+
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return updated
+      }
+      return todo
+    })
+
+    setTodos(updatedTodos)
+  } catch (err) {
+    console.error(err)
+    setError('Could not save completion. Is npm run server running?')
+  }
+}
+
+
   const createTodo = async (title, startTime, commuteMinutes) => {
     // the server makes the id now, so we no longer invent one
     const newTodo = await createTodoRequest(title, startTime, commuteMinutes)
@@ -73,7 +110,7 @@ const App = () => {
       {!isLoading && !error && todos.length === 0 ? (
         <p className="text-gray-500">Nothing yet. Add something above.</p>
       ) : (
-        <TodoList todos={todos} onDelete={deleteTodoById} onEdit={editTodoById} />
+        <TodoList todos={todos} onDelete={deleteTodoById} onEdit={editTodoById} onToggle={toggleTodoById}/>
       )}
 
       <p className="mt-6 text-sm text-gray-500">

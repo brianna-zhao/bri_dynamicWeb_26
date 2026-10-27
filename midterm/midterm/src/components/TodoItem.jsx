@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import TodoEdit from './TodoEdit'
 
 const TodoItem = (props) => {
-  const {todo, onDelete, onEdit} = props
+  const {todo, onDelete, onEdit, onToggle} = props
 
   const [showEdit, setShowEdit] = useState(false)
   const [now, setNow] = useState(Date.now())
@@ -17,6 +17,10 @@ const TodoItem = (props) => {
   const handleDelete = () => {
     onDelete(todo.id)
   }
+
+  const handleToggle = () => {
+    onToggle(todo.id, !todo.done)
+}
 
   // this does not edit anything, it just shows the form
   const handleEditClick = () => {
@@ -65,7 +69,18 @@ const TodoItem = (props) => {
   return (
     <div className="flex items-center justify-between border-b border-gray-200 py-3">
       <div>
-        <span>{todo.title}</span>
+        <label className="flex items-center gap-3">
+          <input
+            type="checkbox"
+            checked={todo.done || false}
+            onChange={handleToggle}
+            className="h-4 w-4"
+          />
+
+          <span className={todo.done ? 'text-gray-400' : ''}>
+            {todo.title}
+          </span>
+        </label>
 
         <p className="mt-1 text-sm text-gray-500">
          Due: {todo.startTime
