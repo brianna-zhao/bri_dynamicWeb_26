@@ -31,13 +31,13 @@ const TodoEdit = (props) => {
 
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 py-3">
+    <form onSubmit={handleSubmit} className="create-panel mb-4">
       <input
         type="text"
         name="title"
         value={values.title}
         onChange={handleChange}
-        className="flex-1 border border-gray-300 rounded py-2 px-3"
+        className="w-full rounded border p-3"
         required
       />
       <label className="block">
@@ -63,12 +63,7 @@ const TodoEdit = (props) => {
         required
       />
 </label>
-      <button
-        type="submit"
-        className="bg-blue-900 text-white px-5 py-2 rounded"
-      >
-      Save
-    </button>
+      <button type="submit" className="add-button mt-5 rounded-lg px-4 py-2 font-medium">Save</button>
     </label>
 
     </form>

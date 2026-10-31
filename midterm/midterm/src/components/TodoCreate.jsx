@@ -41,7 +41,7 @@ const TodoCreate = (props) => {
       name="title"
       value={values.title}
       onChange={handleChange}
-      placeholder="What needs to be done?"
+      placeholder=" What needs to be done?"
       className="w-full border border-gray-300 py-3 rounded"
     />
 
@@ -76,7 +76,7 @@ const TodoCreate = (props) => {
       required
     />
 
-    <button className="rounded-lg bg-blue-100 px-4 py-2 font-medium text-blue-800 hover:bg-blue-200 mt-5">
+    <button  className="add-button mt-5 rounded-lg px-4 py-2 font-medium">
       Add Todo
     </button>
   </form>

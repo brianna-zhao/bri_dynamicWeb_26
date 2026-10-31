@@ -1,1 +1,76 @@
+
 @import 'tailwindcss';
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+:root {
+  --cream: #F3E9DC;
+  --caramel: #C08552;
+  --brownie: #5E3023;
+  --coffee: #895737;
+}
+.app-title {
+  font-family: 'BBH Bartle', sans-serif;
+  font-weight: 400;
+  color: var(--brownie);
+}
+
+.create-panel {
+  background-color: var(--cream);
+  color: var(--brownie);
+  padding: 24px;
+  border-radius: 20px;
+}
+
+.create-panel input {
+  background-color: white;
+  color: var(--brownie);
+  border-color: var(--caramel);
+}
+
+.create-panel input::placeholder {
+  color: var(--coffee);
+}
+
+.create-panel input:focus {
+  outline: 2px solid var(--coffee);
+  outline-offset: 2px;
+}
+
+.add-button {
+  background-color: var(--brownie);
+  color: var(--cream);
+}
+.add-button:hover {
+  background-color: var(--coffee);
+}
+
+.filter-button {
+  background-color: var(--cream);
+  color: var(--brownie);
+  border: 1px solid var(--caramel);
+}
+.filter-button:hover {
+  background-color: var(--caramel);
+  color: var(--brownie);
+}
+.filter-button[aria-pressed='true'] {
+  background-color: var(--brownie);
+  color: var(--cream);
+  border-color: var(--brownie);
+}
+
+.todo-title {
+  color: var(--brownie);
+}
+.todo-action {
+  background-color: var(--cream);
+  color: var(--brownie);
+}
+.todo-action:hover {
+  background-color: var(--caramel);
+}
+
+.todo-text {
+  color: var(--brownie);
+}

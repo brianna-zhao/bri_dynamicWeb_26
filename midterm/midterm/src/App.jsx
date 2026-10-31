@@ -138,25 +138,24 @@ const sortedTodos = [...filteredTodos].sort((a, b) => {
     setTodos(updatedTodos)
   }
 
+
   return (
-     <div className="max-w-xl mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-6">Time to Leave</h1>
-      <TodoCreate onCreate={createTodo} />
-      {isLoading && <p className="text-gray-500">Loading your todos...</p>}
-        <div className="my-6 flex flex-wrap gap-2">
-          <button
+  <div className="mx-auto max-w-6xl px-4 py-8">
+    <h1 className=" app-title mb-8 text-4xl sm:text-5xl"> Time 2 Leave</h1>
+
+    <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2">
+      <div>
+      <div className="create-panel">
+        <TodoCreate onCreate={createTodo} /></div>
+        <div className='mt-3 flex flex-wrap gap-3'>
+
+  <button
             type="button"
             onClick={() => {
               setFilter('all')
-              setNow(Date.now())
-            }}
+              setNow(Date.now())}}
             aria-pressed={filter === 'all'}
-            className={`rounded-full px-4 py-2 text-sm ${
-              filter === 'all'
-                ? 'bg-blue-200 text-blue-900'
-                : 'bg-blue-50 text-blue-700 hover:bg-blue-100'
-            }`}
-          >
+           className="filter-button rounded-full px-4 py-2 text-sm font-medium">
       All
     </button>
 
@@ -167,12 +166,7 @@ const sortedTodos = [...filteredTodos].sort((a, b) => {
             setNow(Date.now())
           }}
           aria-pressed={filter === 'active'}
-          className={`rounded-full px-4 py-2 text-sm ${
-            filter === 'active'
-              ? 'bg-blue-200 text-blue-900'
-              : 'bg-blue-50 text-blue-700 hover:bg-blue-100'
-          }`}
-        >
+          className="filter-button rounded-full px-4 py-2 text-sm font-medium">
           Active
     </button>
 
@@ -183,12 +177,7 @@ const sortedTodos = [...filteredTodos].sort((a, b) => {
         setNow(Date.now())
       }}
       aria-pressed={filter === 'past'}
-      className={`rounded-full px-4 py-2 text-sm ${
-        filter === 'past'
-          ? 'bg-blue-200 text-blue-900'
-          : 'bg-blue-50 text-blue-700 hover:bg-blue-100'
-      }`}
-    >
+     className="filter-button rounded-full px-4 py-2 text-sm font-medium">
       Past
     </button>
 
@@ -199,37 +188,41 @@ const sortedTodos = [...filteredTodos].sort((a, b) => {
         setNow(Date.now())
       }}
       aria-pressed={filter === 'done'}
-      className={`rounded-full px-4 py-2 text-sm ${
-        filter === 'done'
-         ? 'bg-blue-200 text-blue-900'
-        : 'bg-blue-50 text-blue-700 hover:bg-blue-100'
-      }`}
-    >
+      className="filter-button rounded-full px-4 py-2 text-sm font-medium">
       Done
-    </button>
-  </div>
+    </button>  </div></div>
 
-      {error && (
-        <p className="rounded bg-red-50 p-3 text-red-700">{error}</p>
-      )}
+      <div>
+        {isLoading && (
+          <p className="text-gray-500">Loading your events...</p>
+        )}
 
-      {!isLoading && !error && (
-      filteredTodos.length === 0 ? (<p className="text-gray-500">
-        {todos.length === 0
-          ? 'Nothing yet. Add your first event above.'
-          : 'No events match this filter.'}
-      </p>
-  ) : (
-    <TodoList todos={sortedTodos} onDelete={deleteTodoById} onEdit={editTodoById} onToggle={toggleTodoById}
-    />
-  )
-)}
+        {error && (
+          <p className="mb-4 rounded bg-red-50 p-3 text-red-700">
+            {error}
+          </p>
+        )}
 
-      <p className="mt-6 text-sm text-gray-500">
-        {todos.length} {todos.length === 1 ? 'thing' : 'things'} to do
-      </p>
+        {!isLoading && !error && (
+          sortedTodos.length === 0 ? (
+            <p className="text-gray-500">
+              {todos.length === 0
+                ? 'Nothing yet. Add your first event on the form.'
+                : 'No events match this filter.'}
+            </p>
+          ) : (
+            <TodoList
+              todos={sortedTodos}
+              onDelete={deleteTodoById}
+              onEdit={editTodoById}
+              onToggle={toggleTodoById}
+            />
+          )
+        )}
+      </div>
     </div>
-  )
+  </div>
+)
 }
 
 export default App

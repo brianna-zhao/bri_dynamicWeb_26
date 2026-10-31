@@ -1,3 +1,6 @@
+presentation slide link:
+https://docs.google.com/presentation/d/1LhkF_7eENOKudzidxbvbbqXokskfTzNHIHN3RqLOXZo/edit?usp=sharing
+
 My app is a location-based todo list is a todo list that calculates when I need to leave home based on each task’s start time and commute time. it is also color coded by how soon i need to leave. 
 
 As a person with ADHD and is always late, I want to create a color coded list that visually tell user how urgent it is to start moving. So it remind me that i need to leave and reduce the chance of me being late. 
@@ -13,4 +16,32 @@ developer checklist.
 - update the current time so colors change automatically.(will try my best to do this, if not successful i will probably display different leave time in different colo blocks under each task)
 - edit the start time and commute.
 
-https://docs.google.com/presentation/d/1LhkF_7eENOKudzidxbvbbqXokskfTzNHIHN3RqLOXZo/edit?usp=sharing
+revised checklist:
+new field
+- startTime & commuteMinutes ->TodoCreate.
+- createTodoRequest pass these value to api.js and post and save to db.json
+- calculate the leave time and display time and commute time in todoItem
+Editing
+- startTime & commuteMinutes -> TodoEdit and pre-fill existing values.
+- onEdit pass value ->APP ->editTodoById->api->db->update in item
+- ...todo to keep other fields during updates.
+Departure time and countdown
+- Departure time = startTime - commuteMinutes 
+- Display the departure time and remaining minutes.
+- Update every minute with setInterval; restart with clearInterval
+- Math.floor() to round remaining minutes down.
+checkbox and filters
+- Add a checkbox and save done through App’s update function.
+- Pass onToggle through App → TodoList → TodoItem, then pass done in-reverse
+- All, Active, Past, and Done buttons.
+- Filter the displayed list without changing the original tasks.
+Style 
+- time-based color backgrounds, with gray taking priority for completed tasks.
+- separate Edit Delete buttons.
+- Todo and filter buttons in light blue.
+- responsive layout.
+
+gap
+
+
+

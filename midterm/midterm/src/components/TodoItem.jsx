@@ -82,11 +82,10 @@ if (todo.done) {
             className="h-4 w-4"
           />
 
-          <span className="font-bold text-black"> {todo.title}
-</span>
+          <span className="todo-title font-bold">{todo.title}</span>
         </label>
 
-        <p className="mt-1 text-sm text-gray-900">
+        <p className="todo-text mt-1 text-sm">
          Due: {todo.startTime
           ? new Date(todo.startTime).toLocaleString('en-US', {
               weekday: 'long',
@@ -98,7 +97,7 @@ if (todo.done) {
             })
           : 'Not set'}
 </p>
-      <p className="mt-1 text-sm text-gray-900">
+      <p className="todo-text mt-1 text-sm">
         Commute from home: {todo.commuteMinutes != null
           ? `${todo.commuteMinutes} min`
           : 'Not set'}
@@ -123,18 +122,12 @@ if (todo.done) {
   </p>
 )}
 </div>
-      <div className="text-sm">
-        <div className="flex shrink-0 gap-2 text-sm">
-        <button onClick={handleEditClick} className="rounded-lg bg-white px-3 py-2 font-medium text-gray-800 hover:bg-gray-100">
-          Edit
-        </button>
-
-        <button onClick={handleDelete} className="rounded-lg bg-white px-3 py-2 font-medium text-red-600 hover:bg-red-50">
-          Delete
-        </button>
+      <div className="flex shrink-0 gap-2 text-sm">
+  <button onClick={handleEditClick} className="todo-action rounded-lg px-3 py-2 font-medium" > Edit </button>
+  <button onClick={handleDelete} className="todo-action rounded-lg px-3 py-2 font-medium"> Delete </button>
 </div>
       </div>
-    </div>
+
   )
 }
 export default TodoItem
