@@ -56,16 +56,21 @@ const App = () => {
 */
 
 const filteredTodos = todos.filter((todo) => {
-  const past = todo.startTime
-    ? new Date(todo.startTime).getTime() <= now
-    : false
+  let isOverdue = false
+
+  if (todo.startTime && todo.commuteMinutes != null) {
+    const departureTime =
+      new Date(todo.startTime).getTime() -
+      todo.commuteMinutes * 60 * 1000
+    isOverdue = departureTime <= now
+  }
 
   if (filter === 'active') {
-    return !todo.done && !past
+    return !todo.done && !isOverdue
   }
 
   if (filter === 'past') {
-    return !todo.done && past
+    return !todo.done && isOverdue
   }
 
   if (filter === 'done') {
