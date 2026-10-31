@@ -59,4 +59,8 @@ npm run server
 (back to first terminal window)
 npm run dev
 
+what has changed after tuesday presentation:
+style and layout.
+Now the done item is in bottom of the list.
+Past fliter fixed(used to be past item got into done).
 
