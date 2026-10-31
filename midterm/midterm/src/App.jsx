@@ -30,11 +30,9 @@ const App = () => {
       } catch(err){
         console.error(err)
         setError('could not reach server, is` npm run server` runnng?')
-
       }finally{
         setIsLoading(false)
-      }
-    }
+      }}
     loadTodos()
   }, [])
 
@@ -57,28 +55,35 @@ const App = () => {
 
 const filteredTodos = todos.filter((todo) => {
   let isOverdue = false
-
   if (todo.startTime && todo.commuteMinutes != null) {
     const departureTime =
       new Date(todo.startTime).getTime() -
       todo.commuteMinutes * 60 * 1000
     isOverdue = departureTime <= now
   }
-
   if (filter === 'active') {
     return !todo.done && !isOverdue
   }
-
   if (filter === 'past') {
     return !todo.done && isOverdue
   }
-
   if (filter === 'done') {
     return !!todo.done
   }
-
   return true
 })
+const sortedTodos = [...filteredTodos].sort((a, b) => {
+  if (a.done && !b.done) {
+    return 1
+  }
+  if (!a.done && b.done) {
+    return -1
+  }
+  return 0
+})
+
+
+
 
 
   const toggleTodoById = async (id, done) => {
@@ -88,14 +93,12 @@ const filteredTodos = todos.filter((todo) => {
       ...todo,
       done: done,
     })
-
     const updatedTodos = todos.map((todo) => {
       if (todo.id === id) {
         return updated
       }
       return todo
     })
-
     setTodos(updatedTodos)
   } catch (err) {
     console.error(err)
@@ -110,7 +113,6 @@ const filteredTodos = todos.filter((todo) => {
     const updatedTodos = [...todos, newTodo]
     setTodos(updatedTodos)
   }
-
 
   const deleteTodoById = async(id) => {
     await deleteTodoRequest(id)
@@ -218,7 +220,7 @@ const filteredTodos = todos.filter((todo) => {
           : 'No events match this filter.'}
       </p>
   ) : (
-    <TodoList todos={filteredTodos} onDelete={deleteTodoById} onEdit={editTodoById} onToggle={toggleTodoById}
+    <TodoList todos={sortedTodos} onDelete={deleteTodoById} onEdit={editTodoById} onToggle={toggleTodoById}
     />
   )
 )}

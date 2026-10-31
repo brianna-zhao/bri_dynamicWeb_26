@@ -9,7 +9,6 @@ const TodoList = (props) => {
       <TodoItem key={todo.id} todo={todo} onDelete={onDelete} onEdit={onEdit} onToggle={onToggle}/>
     )
   })
-
   return <div>{renderedTodos}</div>
 }
 
