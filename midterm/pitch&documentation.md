@@ -42,6 +42,21 @@ Style
 - responsive layout.
 
 gap
+Expand : added All, Active, Past, and Done filters to organize events.
+Design changes: colored countdown text into colored card backgrounds to make urgency more noticeable. rearrange desktop layout to side by side so desktop and phone screen is actually different
+Props connection: forgot to pass onToggle from App to TodoList, which caused the checkbox to fail（you can click but status not updating）
+Zeros: add check 0 or null for commuteTime bc if zoom time=0 and its causing problem
+Problems: was pushing get current time to db.json and this is causing the page to refresh and pull data from db every min and causing the page to look flashy. And the solution is to not sent the data to db.json and just render it in todoItem.
 
+what do you need to do to run the file:
+cd (the file name)
+npm i
+npm install -D tailwindcss @tailwindcss/vite
+control+t
+npm install axios
+npm install -D json-server@0.17.4
+npm run server
+(back to first terminal window)
+npm run dev
 
 
